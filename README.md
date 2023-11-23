@@ -40,6 +40,7 @@ Eficiencia y Tiempo Real: Optimizar el rendimiento del sistema para garantizar u
 Escalabilidad y Modularidad: Diseñar el sistema de manera que sea escalable y modular, permitiendo futuras expansiones y adaptaciones a diferentes entornos y requisitos específicos.
 
 Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la detección y manipulación de objetos de menaje, sino también sentar las bases para soluciones robóticas más avanzadas y accesibles en el ámbito doméstico.
+
 ---
 ## Instalación
 
