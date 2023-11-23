@@ -3,7 +3,7 @@
 ![Imagen o Logo del Proyecto](url_de_la_imagen)
 
 > El objetivo principal de la detección y manipulación de objetos de menaje es dotar a los sistemas robóticos de la capacidad de interactuar de manera inteligente con objetos domésticos, facilitando tareas como la organización, limpieza, y asistencia en entornos hogareños. Este campo encuentra aplicaciones prácticas en la automatización de tareas domésticas y en la mejora de la accesibilidad para personas con necesidades especiales.
-
+>
 > Al incorporar algoritmos avanzados de visión por computadora y técnicas de manipulación robótica, los sistemas diseñados para la detección y manipulación de objetos de menaje pueden ofrecer soluciones eficientes y versátiles para mejorar la calidad de vida en el hogar, brindando un enfoque innovador hacia la automatización de actividades diarias.
 ---
 ## Contenido
