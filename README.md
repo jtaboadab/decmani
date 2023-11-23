@@ -27,7 +27,7 @@ En un contexto donde la robótica y la inteligencia artificial se fusionan para 
 
 ROS2, como marco de trabajo, proporciona la estructura necesaria para el desarrollo de sistemas robóticos complejos. Su capacidad para facilitar la comunicación entre módulos, manejar el control de hardware y permitir la expansión modular lo convierte en una elección lógica para proyectos de este tipo. Detectron2, por otro lado, aporta poderosas capacidades de detección de objetos basadas en modelos de aprendizaje profundo, lo que permite una identificación precisa y eficiente de objetos en imágenes o videos.
 
-#### Objetivos:
+### Objetivos:
 
 Detección Precisa: Implementar algoritmos de detección de objetos utilizando Detectron2 para lograr una identificación precisa y robusta de objetos de menaje en entornos domésticos.
 
@@ -43,13 +43,35 @@ Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la
 
 ## Instalación
 
-Instrucciones paso a paso sobre cómo instalar y configurar el proyecto. Incluye dependencias, versiones recomendadas y cualquier otro requisito.
+> Instrucciones paso a paso sobre cómo instalar y configurar el proyecto.
 
-### Ejemplo de comandos de instalación
+### Instalación ROS2 Humble
+
+Este proyecto ha sido realizado en el SO Ubuntu 22.04.
+
+Para la instalación de ROS2 Humble en el SO mencionado debe seguir los pasos de la página oficial: [Tutorial Instalación ROS2](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+
+Para configurar el entorno es recomendable seguir el siguiente tutorial: [Tutorial Beginners: CLI Tools](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools.html)
+
+### Creación del workspace
+
+Antes de realizar la clonación del repositorio es necesario crear un workspace:
 ```
-git clone https://github.com/tu-usuario/decmani.git
-cd decmani
-pip install -r requirements.txt
+mkdir -p ~/decmani_ws/src
+cd ~/decmani_ws/src
+```
+
+Clonamos el repositorio:
+```
+git clone https://github.com/jtaboadab/decmani.git
+```
+
+Volvemos a la raiz del workspace y realizamos colcon build:
+```
+cd ~/decmani_ws
+```
+```
+colcon build
 ```
 ### Otros pasos de instalación...
 
