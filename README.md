@@ -73,7 +73,7 @@ cd ~/decmani_ws
 ```
 colcon build
 ```
-### Otros pasos de instalación...
+### Creación de un entorno virtual para instalar la librerías necesarias
 
 ## Uso
 
