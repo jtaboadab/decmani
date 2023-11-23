@@ -1,4 +1,4 @@
-# DecMani - Detección y Manipulación de Objetos con ROS2 y Detectron2
+# DecMani - Detección y Manipulación de Objetos de menaje
 
 ![Imagen o Logo del Proyecto](url_de_la_imagen)
 
@@ -21,9 +21,16 @@ Descripción más detallada del proyecto, su contexto y objetivos.
 
 Instrucciones paso a paso sobre cómo instalar y configurar el proyecto. Incluye dependencias, versiones recomendadas y cualquier otro requisito.
 
-```bash
 # Ejemplo de comandos de instalación
 git clone https://github.com/tu-usuario/decmani.git
 cd decmani
 pip install -r requirements.txt
 # Otros pasos de instalación...
+
+## Uso
+
+## Estructura del Proyecto
+
+## Contribuciones
+
+## Licencia
