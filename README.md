@@ -27,7 +27,7 @@ En un contexto donde la robótica y la inteligencia artificial se fusionan para 
 
 ROS2, como marco de trabajo, proporciona la estructura necesaria para el desarrollo de sistemas robóticos complejos. Su capacidad para facilitar la comunicación entre módulos, manejar el control de hardware y permitir la expansión modular lo convierte en una elección lógica para proyectos de este tipo. Detectron2, por otro lado, aporta poderosas capacidades de detección de objetos basadas en modelos de aprendizaje profundo, lo que permite una identificación precisa y eficiente de objetos en imágenes o videos.
 
-### Objetivos:
+#### Objetivos:
 
 Detección Precisa: Implementar algoritmos de detección de objetos utilizando Detectron2 para lograr una identificación precisa y robusta de objetos de menaje en entornos domésticos.
 
