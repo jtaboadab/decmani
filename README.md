@@ -22,7 +22,8 @@ Descripción más detallada del proyecto, su contexto y objetivos.
 Instrucciones paso a paso sobre cómo instalar y configurar el proyecto. Incluye dependencias, versiones recomendadas y cualquier otro requisito.
 
 ### Ejemplo de comandos de instalación
-```git clone https://github.com/tu-usuario/decmani.git
+```
+git clone https://github.com/tu-usuario/decmani.git
 cd decmani
 pip install -r requirements.txt
 ```
