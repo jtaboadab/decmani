@@ -5,7 +5,9 @@
 > El objetivo principal de la detección y manipulación de objetos de menaje es dotar a los sistemas robóticos de la capacidad de interactuar de manera inteligente con objetos domésticos, facilitando tareas como la organización, limpieza, y asistencia en entornos hogareños. Este campo encuentra aplicaciones prácticas en la automatización de tareas domésticas y en la mejora de la accesibilidad para personas con necesidades especiales.
 >
 > Al incorporar algoritmos avanzados de visión por computadora y técnicas de manipulación robótica, los sistemas diseñados para la detección y manipulación de objetos de menaje pueden ofrecer soluciones eficientes y versátiles para mejorar la calidad de vida en el hogar, brindando un enfoque innovador hacia la automatización de actividades diarias.
+
 ---
+
 ## Contenido
 
 1. [Introducción](#introducción)
@@ -13,8 +15,9 @@
 3. [Uso](#uso)
 4. [Estructura del Proyecto](#estructura-del-proyecto)
 5. [Contribuciones](#contribuciones)
-6. [Licencia](#licencia)
+   
 ---
+
 ## Introducción
 
 ### Descripción:
@@ -49,10 +52,38 @@ Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la
 
 ## Estructura del Proyecto
 
+### Archivos Principales
+
+- `detectron2_node.py`: Archivo principal que contiene la implementación del nodo ROS2 con Detectron2.
+- `requirements.txt`: Lista de dependencias del proyecto.
+
+### Carpetas
+
+- **src/**: Contiene el código fuente del proyecto.
+  - `__init__.py`: Archivo de inicialización para tratar la carpeta como un paquete Python.
+  - `detectron2_node.py`: Implementación del nodo de ROS2 con Detectron2.
+  - `utils/`: Carpeta que contiene módulos o scripts utilitarios.
+    - `helper_functions.py`: Funciones auxiliares para el procesamiento de imágenes u otras tareas.
+- **msg_srv_creator/**: Contiene los archivos de definición de mensajes de ROS (si aplica).
+  - `Mask.msg`: Definición del mensaje de máscara.
+- **docs/**: Documentación adicional si es necesario.
+- **tests/**: Archivos de prueba si es relevante.
+
+### Configuración y Scripts
+
+- **config/**: Archivos de configuración o modelos preentrenados para Detectron2.
+  - `mask_rcnn_config.yaml`: Configuración del modelo Mask R-CNN.
+- **launch/**: Archivos de lanzamiento de ROS2 si es aplicable.
+  - `detectron2_node_launch.py`: Archivo de lanzamiento para el nodo Detectron2.
+- `setup.py`: Archivo de configuración para la instalación del proyecto.
+
+### Otros Archivos
+
+- `.gitignore`: Lista de archivos y carpetas que deben ignorarse al realizar seguimiento con Git.
+- `LICENSE`: Licencia del proyecto.
+- `README.md`: Documentación principal del proyecto.
+
 ---
 
 ## Contribuciones
 
----
-
-## Licencia
