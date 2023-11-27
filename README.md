@@ -23,7 +23,7 @@
 
 ### Descripción:
 
-La Detección y Manipulación de Objetos de Menaje mediante [ROS2](https://www.ros.org/) y [Detectron2](https://github.com/facebookresearch/detectron2/ representa un enfoque avanzado para la automatización de tareas en entornos domésticos. Este proyecto se centra en la integración de dos tecnologías líderes: ROS2, un marco de trabajo de robótica de código abierto, y Detectron2, una biblioteca de detección de objetos basada en aprendizaje profundo.
+La Detección y Manipulación de Objetos de Menaje mediante [ROS2](https://www.ros.org/) y [Detectron2](https://github.com/facebookresearch/detectron2/) representa un enfoque avanzado para la automatización de tareas en entornos domésticos. Este proyecto se centra en la integración de dos tecnologías líderes: ROS2, un marco de trabajo de robótica de código abierto, y Detectron2, una biblioteca de detección de objetos basada en aprendizaje profundo.
 
 ### Contexto:
 
