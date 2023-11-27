@@ -97,16 +97,21 @@ source myenv/bin/activate
 #### Requerimientos
 
 - Linux con Python ≥ 3.7
+  
 - PyTorch ≥ 1.8 y torchvision que coincidan con la instalación de PyTorch. Instalalos juntos en  [pytorch.org](https://pytorch.org/) para asegurarte
+  
 - gcc & g++ ≥ 5.4 son requeridos
+  
 - OpenCV
   ```
   pip install opencv-python
   ```
+  
 - CvBridge
   ```
   pip install cvbridge3
   ```
+  
 - NumPy
   ```
   pip install numpy
