@@ -6,9 +6,9 @@
 
 ## Instalación ROS2 Humble
 
-Este proyecto ha sido realizado en el SO Ubuntu 22.04.
+Este proyecto ha sido realizado en el S.O. Ubuntu 22.04.
 
-Para la instalación de ROS2 Humble en el SO mencionado debe seguir los pasos de la página oficial: [Tutorial Instalación ROS2](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+Para la instalación de ROS2 Humble en el S.O. mencionado debe seguir los pasos de la página oficial: [Tutorial Instalación ROS2](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
 
 Para configurar el entorno es recomendable seguir el siguiente tutorial: [Tutorial Beginners: CLI Tools](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools.html)
 
@@ -59,7 +59,7 @@ source myenv/bin/activate
 
 - Linux con Python ≥ 3.7
   
-- PyTorch ≥ 1.8 y torchvision que coincidan con la instalación de PyTorch. Instalalos juntos en  [pytorch.org](https://pytorch.org/) para asegurarte
+- PyTorch ≥ 1.8 y torchvision que coincidan con la instalación de PyTorch. Instálalos juntos en  [pytorch.org](https://pytorch.org/) para asegurarte
   
 - gcc & g++ ≥ 5.4 son requeridos
   
