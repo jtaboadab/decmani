@@ -94,7 +94,7 @@ source myenv/bin/activate
 
 ### Instalación de las librerías necesarias
 
-*#### Requerimientos*
+#### *Requerimientos*
 
 - Linux con Python ≥ 3.7
   
