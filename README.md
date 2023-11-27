@@ -57,7 +57,7 @@ Para configurar el entorno es recomendable seguir el siguiente tutorial: [Tutori
 ### Creación del workspace
 
 Antes de realizar la clonación del repositorio es necesario crear un workspace:
-```bash
+```
 mkdir -p ~/decmani_ws/src
 cd ~/decmani_ws/src
 ```
@@ -75,6 +75,21 @@ cd ~/decmani_ws
 colcon build
 ```
 ### Creación de un entorno virtual para instalar la librerías necesarias
+
+Abre tu terminal y ejecuta los siguientes comandos para crear y activar un entorno virtual:
+
+```bash
+# Instalación de virtualenv
+pip install virtualenv
+
+# Creación del entorno virtual
+python -m venv myenv
+
+# Activación del entorno virtual (Linux/Mac)
+source myenv/bin/activate
+
+# Activación del entorno virtual (Windows)
+.\myenv\Scripts\activate
 ---
 ## Uso
 ---
