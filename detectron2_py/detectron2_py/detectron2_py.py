@@ -4,7 +4,6 @@ from rclpy.node import Node
 
 # Librerías de mensajes de ROS2
 from sensor_msgs.msg import Image
-from sensor_msgs.msg import PointCloud2
 from msg_srv_creator.msg import Mask
 
 # Librerías para trabajar con matrices e imágenes
@@ -83,7 +82,7 @@ class Detectron2(Node):
     # Función para obtener máscaras utilizando Detectron2
     def masks_obtainer(self, mask_msg):
 
-        cv_image = self.cvbridge_.imgmsg_to_cv2(mask_msg, 'rgb8')
+        cv_image = self.cvbridge_.imgmsg_to_cv2(mask_msg, 'bgr8')
         cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
         
         # Obtiene las predicciones de Detectron2
