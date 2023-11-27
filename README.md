@@ -79,18 +79,21 @@ colcon build
 Abre tu terminal y ejecuta los siguientes comandos para crear y activar un entorno virtual:
 
 Instalación de virtualenv
-
-´pip install virtualenv´
-
+´´´
+pip install virtualenv
+´´´
 Creación del entorno virtual
-´python -m venv myenv´
-
+´´´
+python -m venv myenv
+´´´
 Activación del entorno virtual (Linux/Mac)
-´source myenv/bin/activate´
-
+´´´
+source myenv/bin/activate
+´´´
 Activación del entorno virtual (Windows)
-´.\myenv\Scripts\activate´
-
+´´´
+.\myenv\Scripts\activate
+´´´
 ---
 ## Uso
 ---
