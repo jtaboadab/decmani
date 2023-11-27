@@ -42,6 +42,7 @@ Escalabilidad y Modularidad: Diseñar el sistema de manera que sea escalable y m
 Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la detección y manipulación de objetos de menaje, sino también sentar las bases para soluciones robóticas más avanzadas y accesibles en el ámbito doméstico.
 
 ---
+
 ## Instalación
 
 > Instrucciones paso a paso sobre cómo instalar y configurar el proyecto.
@@ -61,7 +62,6 @@ Antes de realizar la clonación del repositorio es necesario crear un workspace:
 mkdir -p ~/decmani_ws/src
 cd ~/decmani_ws/src
 ```
-
 Clonamos el repositorio:
 ```
 git clone https://github.com/jtaboadab/decmani.git
@@ -74,7 +74,8 @@ cd ~/decmani_ws
 ```
 colcon build
 ```
-### Creación de un entorno virtual para instalar la librerías necesarias
+
+### Creación de un entorno virtual
 
 Abre tu terminal y ejecuta los siguientes comandos para crear y activar un entorno virtual:
 
@@ -91,11 +92,48 @@ Activación del entorno virtual
 source myenv/bin/activate
 ```
 
+### Instalación de las librerías necesarias
+
+#### Requerimientos
+
+- Linux con Python ≥ 3.7
+- PyTorch ≥ 1.8 y torchvision que coincidan con la instalación de PyTorch. Instalalos juntos en  [pytorch.org](https://pytorch.org/) para asegurarte
+- gcc & g++ ≥ 5.4 son requeridos
+- OpenCV
+  ```
+  pip install opencv-python
+  ```
+- CvBridge
+  ```
+  pip install cvbridge3
+  ```
+- NumPy
+  ```
+  pip install numpy
+  ```
+- Detectron2
+  Build Detectron2 from Source
+  ```
+  python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+  # (add --user if you don't have permission)
+
+  # Or, to install it from a local clone:
+  git clone https://github.com/facebookresearch/detectron2.git
+  python -m pip install -e detectron2
+  ```
+
 ---
+
 ## Uso
+
 ---
+
 ## Estructura del Proyecto
+
 ---
+
 ## Contribuciones
+
 ---
+
 ## Licencia
