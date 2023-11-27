@@ -94,8 +94,6 @@ source myenv/bin/activate
 
 ### Instalación de las librerías necesarias
 
-#### *Requerimientos*
-
 - Linux con Python ≥ 3.7
   
 - PyTorch ≥ 1.8 y torchvision que coincidan con la instalación de PyTorch. Instalalos juntos en  [pytorch.org](https://pytorch.org/) para asegurarte
