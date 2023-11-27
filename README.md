@@ -14,7 +14,8 @@
 2. [Instalación](#instalación)
 3. [Uso](#uso)
 4. [Estructura del Proyecto](#estructura-del-proyecto)
-5. [Contribuciones](#contribuciones)
+5. [Licencia](#licencia)
+6. [Contribuciones](#contribuciones)
    
 ---
 
@@ -22,7 +23,7 @@
 
 ### Descripción:
 
-La Detección y Manipulación de Objetos de Menaje mediante ROS2 y Detectron2 representa un enfoque avanzado para la automatización de tareas en entornos domésticos. Este proyecto se centra en la integración de dos tecnologías líderes: ROS2, un marco de trabajo de robótica de código abierto, y Detectron2, una biblioteca de detección de objetos basada en aprendizaje profundo.
+La Detección y Manipulación de Objetos de Menaje mediante [ROS2](https://www.ros.org/) y [Detectron2](https://github.com/facebookresearch/detectron2/ representa un enfoque avanzado para la automatización de tareas en entornos domésticos. Este proyecto se centra en la integración de dos tecnologías líderes: ROS2, un marco de trabajo de robótica de código abierto, y Detectron2, una biblioteca de detección de objetos basada en aprendizaje profundo.
 
 ### Contexto:
 
@@ -43,6 +44,12 @@ Eficiencia y Tiempo Real: Optimizar el rendimiento del sistema para garantizar u
 Escalabilidad y Modularidad: Diseñar el sistema de manera que sea escalable y modular, permitiendo futuras expansiones y adaptaciones a diferentes entornos y requisitos específicos.
 
 Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la detección y manipulación de objetos de menaje, sino también sentar las bases para soluciones robóticas más avanzadas y accesibles en el ámbito doméstico.
+
+---
+
+## Instalación
+
+Mira las [instrucciones de instalación](https://github.com/jtaboadab/decmani/blob/main/INSTALL.md).
 
 ---
 
@@ -82,6 +89,12 @@ Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la
 - `.gitignore`: Lista de archivos y carpetas que deben ignorarse al realizar seguimiento con Git.
 - `LICENSE`: Licencia del proyecto.
 - `README.md`: Documentación principal del proyecto.
+
+---
+
+## Licencia
+
+DecMani se publica bajo la licencia [Apache 2.0 license](https://github.com/jtaboadab/decmani/blob/main/LICENSE.md).
 
 ---
 
