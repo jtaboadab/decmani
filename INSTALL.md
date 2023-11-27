@@ -1,7 +1,9 @@
 # Instalación
 
 > Instrucciones paso a paso sobre cómo instalar y configurar el proyecto.
+> 
 ---
+
 ## Instalación ROS2 Humble
 
 Este proyecto ha sido realizado en el SO Ubuntu 22.04.
@@ -9,7 +11,9 @@ Este proyecto ha sido realizado en el SO Ubuntu 22.04.
 Para la instalación de ROS2 Humble en el SO mencionado debe seguir los pasos de la página oficial: [Tutorial Instalación ROS2](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
 
 Para configurar el entorno es recomendable seguir el siguiente tutorial: [Tutorial Beginners: CLI Tools](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools.html)
+
 ---
+
 ## Creación del workspace
 
 Antes de realizar la clonación del repositorio es necesario crear un workspace:
@@ -29,7 +33,9 @@ cd ~/decmani_ws
 ```
 colcon build
 ```
+
 ---
+
 ## Creación de un entorno virtual
 
 Abre tu terminal y ejecuta los siguientes comandos para crear y activar un entorno virtual:
@@ -46,7 +52,9 @@ Activación del entorno virtual
 ```
 source myenv/bin/activate
 ```
+
 ---
+
 ## Instalación de las librerías necesarias
 
 - Linux con Python ≥ 3.7
