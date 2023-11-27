@@ -57,7 +57,7 @@ Para configurar el entorno es recomendable seguir el siguiente tutorial: [Tutori
 ### Creación del workspace
 
 Antes de realizar la clonación del repositorio es necesario crear un workspace:
-```
+```bash
 mkdir -p ~/decmani_ws/src
 cd ~/decmani_ws/src
 ```
