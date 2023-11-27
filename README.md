@@ -87,3 +87,4 @@ Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la
 
 ## Contribuciones
 
+¡Gracias por considerar contribuir a DecMani! Este proyecto se beneficia de la colaboración y apreciamos las contribuciones de la comunidad.
