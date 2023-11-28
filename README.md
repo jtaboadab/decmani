@@ -33,15 +33,15 @@ ROS2, como marco de trabajo, proporciona la estructura necesaria para el desarro
 
 ### Objetivos:
 
-- Detección Precisa: Implementar algoritmos de detección de objetos utilizando Detectron2 para lograr una identificación precisa y robusta de objetos de menaje en entornos domésticos.
+   - Detección Precisa: Implementar algoritmos de detección de objetos utilizando Detectron2 para lograr una identificación precisa y robusta de objetos de menaje en entornos domésticos.
 
-- Integración con ROS2: Integrar los resultados de la detección de objetos en el marco de trabajo ROS2 para facilitar la coordinación y control de sistemas robóticos.
+   - Integración con ROS2: Integrar los resultados de la detección de objetos en el marco de trabajo ROS2 para facilitar la coordinación y control de sistemas robóticos.
 
-- Manipulación Robótica: Desarrollar capacidades de manipulación robótica que permitan al sistema interactuar físicamente con los objetos identificados, utilizando información proporcionada por la detección.
+   - Manipulación Robótica: Desarrollar capacidades de manipulación robótica que permitan al sistema interactuar físicamente con los objetos identificados, utilizando información proporcionada por la detección.
 
-- Eficiencia y Tiempo Real: Optimizar el rendimiento del sistema para garantizar una ejecución eficiente y en tiempo real, crucial para la aplicabilidad práctica en entornos dinámicos.
+   - Eficiencia y Tiempo Real: Optimizar el rendimiento del sistema para garantizar una ejecución eficiente y en tiempo real, crucial para la aplicabilidad práctica en entornos dinámicos.
 
-- Escalabilidad y Modularidad: Diseñar el sistema de manera que sea escalable y modular, permitiendo futuras expansiones y adaptaciones a diferentes entornos y requisitos específicos.
+   - Escalabilidad y Modularidad: Diseñar el sistema de manera que sea escalable y modular, permitiendo futuras expansiones y adaptaciones a diferentes entornos y requisitos específicos.
 
 Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la detección y manipulación de objetos de menaje, sino también sentar las bases para soluciones robóticas más avanzadas y accesibles en el ámbito doméstico.
 
