@@ -1,3 +1,4 @@
+from interbotix_xs_modules.xs_robot.arm import InterbotixManipulatorXS
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 

@@ -4,6 +4,7 @@ from rclpy.node import Node
 
 # Librerías de mensajes de ROS2
 from sensor_msgs.msg import Image
+from geometry_msgs.msg import Point
 from msg_srv_creator.msg import Mask
 from msg_srv_creator.msg import Bbox3d
 
@@ -51,6 +52,7 @@ class Bbox(Node):
         self.bbox_3d = Bbox3d()
         self.cv_depth_image = None
         self.cv_normalized_depth_image = None
+        self.count_ = 0
         
         # Publishers
         self.publisher_bbox_3d_ = self.create_publisher(Bbox3d, '/bbox/bbox_3d', 10)
@@ -65,34 +67,38 @@ class Bbox(Node):
     def listener_callback_masks(self, msg):
 
         self.masks_ = msg # Almacenamos el mensaje que llega del topic
+        self.bbox_3d = Bbox3d()
+        self.count_ = 0
         
-        # Comprobamos que se haya recibido el mensaje del topic de la imagen de profundidad
-        if self.cv_normalized_depth_image is not None:
+        for i in range(len(self.masks_.mask_images)):
             
-            # Convertimos la máscara a formato cv2 para poder trabajar con ella
-            mask = self.cvbridge_.imgmsg_to_cv2(self.masks_.mask_images[0], self.masks_.mask_images[0].encoding)
+            # Comprobamos que se haya recibido el mensaje del topic de la imagen de profundidad
+            if self.cv_normalized_depth_image is not None:
             
-            z = self.coordenada_z(self.cv_normalized_depth_image, mask) # Calculamos la coordenada Z a partir de la imagen de profundidad y la máscara
+                # Convertimos la máscara a formato cv2 para poder trabajar con ella
+                mask = self.cvbridge_.imgmsg_to_cv2(self.masks_.mask_images[i], self.masks_.mask_images[i].encoding)
             
-            if z != 0: # Si la coordenada Z distinta de 0 se realizan las operaciones, si es 0 el objeto no ha sido detectado correctamente
-                
-                x, y = self.coordenadas_xy(mask) # Calculamos las coordenadas X e Y
-                
-                self.calcular_bounding_box_3d((x, y, z), self.dimensiones) # Calculamos el bounding box 3D a partir de la coordenadas y las dimensiones del objeto
-                
-                self.publisher_bbox_3d_.publish(self.bbox_3d) # Publicamos el bounding box 3D por el topic '/bbox/bbox_3d'
-                
-                # Mostramos por pantalla la información obtenida
-                self.get_logger().info('\nCoordenada X: %s m\nCoordenada Y: %s m\nCoordenada Z: %s m\n' % (x, y, z))
-                self.get_logger().info(
-                    '\nBounding Box 3D:\nCentro objeto => %s m\nCentro frontal => %s m\nCentro trasero => %s m\nCentro izquierdo => %s m\nCentro derecho => %s m\nEsquina front inf izq => %s m\nEsquina front sup izq => %s m\nEsquina front inf der => %s m\nEsquina front sup der => %s m\nEsquina tras inf izq => %s m\nEsquina tras sup izq => %s m\nEsquina tras inf der => %s m\nEsquina tras sup der => %s m\n' 
-                    % (self.bbox_3d.centro_objeto, self.bbox_3d.centro_frontal, self.bbox_3d.centro_trasero, self.bbox_3d.centro_izquierdo, self.bbox_3d.centro_derecho, self.bbox_3d.esquina_frontal_inferior_izquierda, self.bbox_3d.esquina_frontal_superior_izquierda, self.bbox_3d.esquina_frontal_inferior_derecha, self.bbox_3d.esquina_frontal_superior_derecha, self.bbox_3d.esquina_trasera_inferior_izquierda, self.bbox_3d.esquina_trasera_superior_izquierda, self.bbox_3d.esquina_trasera_inferior_derecha, self.bbox_3d.esquina_trasera_superior_derecha)
-                    )
+                z = self.coordenada_z(self.cv_normalized_depth_image, mask) # Calculamos la coordenada Z a partir de la imagen de profundidad y la máscara
             
-            else:
+                if z != 0: # Si la coordenada Z distinta de 0 se realizan las operaciones, si es 0 el objeto no ha sido detectado correctamente
                 
-                # Mostramos por pantalla que el objeto no ha sido detectado correctamente
-                self.get_logger().info('Objeto no detectado')
+                    x, y = self.coordenadas_xy(mask) # Calculamos las coordenadas X e Y
+                
+                    self.calcular_bounding_box_3d((x, y, z), self.dimensiones, self.count_) # Calculamos el bounding box 3D a partir de la coordenadas y las dimensiones del objeto
+                
+                    self.publisher_bbox_3d_.publish(self.bbox_3d) # Publicamos el bounding box 3D por el topic '/bbox/bbox_3d'
+                    
+                    self.count_ = self.count_ + 1
+                
+                    # Mostramos por pantalla la información obtenida
+                    self.get_logger().info('\nObjeto %s\nCoordenada X: %s m\nCoordenada Y: %s m\nCoordenada Z: %s m\n' % (self.count_,x, y, z))
+            
+                else:
+                
+                    # Mostramos por pantalla que el objeto no ha sido detectado correctamente
+                    self.get_logger().info('Objeto %s no detectado' % self.count_)
+            
+        self.count_ = 0
 
     ## Función que se llama cada vez que se recibe un mensaje por el topic '/detectron2/depth_image'
     def listener_callback_depth_image(self, msg):
@@ -231,63 +237,89 @@ class Bbox(Node):
         return x, y
     
     ## Función que calcula el bounding box 3D del objeto a partir del centroide 3D y las dimensiones del objeto
-    def calcular_bounding_box_3d(self, centroide, dimensiones):
+    def calcular_bounding_box_3d(self, centroide, dimensiones, count):
         
         ancho, alto, profundidad = dimensiones
         x, y, z = centroide
 
-        # Calculamos centros y esquinas del bounding box 
-        self.bbox_3d.centro_objeto.x = x
-        self.bbox_3d.centro_objeto.y = y
-        self.bbox_3d.centro_objeto.z = z + profundidad / 2
-        
-        self.bbox_3d.centro_frontal.x = x
-        self.bbox_3d.centro_frontal.y = y
-        self.bbox_3d.centro_frontal.z = z
-        
-        self.bbox_3d.centro_trasero.x = x
-        self.bbox_3d.centro_trasero.y = y
-        self.bbox_3d.centro_trasero.z = z + profundidad
-        
-        self.bbox_3d.centro_izquierdo.x = x - ancho / 2
-        self.bbox_3d.centro_izquierdo.y = y
-        self.bbox_3d.centro_izquierdo.z = z + profundidad / 2
-        
-        self.bbox_3d.centro_derecho.x = x + ancho / 2
-        self.bbox_3d.centro_derecho.y = y
-        self.bbox_3d.centro_derecho.z = z + profundidad / 2
-        
-        self.bbox_3d.esquina_frontal_inferior_izquierda.x = x - ancho / 2
-        self.bbox_3d.esquina_frontal_inferior_izquierda.y = y - alto / 2
-        self.bbox_3d.esquina_frontal_inferior_izquierda.z = z
-        
-        self.bbox_3d.esquina_frontal_superior_izquierda.x = x - ancho / 2
-        self.bbox_3d.esquina_frontal_superior_izquierda.y = y + alto / 2
-        self.bbox_3d.esquina_frontal_superior_izquierda.z = z
-        
-        self.bbox_3d.esquina_frontal_inferior_derecha.x = x + ancho / 2
-        self.bbox_3d.esquina_frontal_inferior_derecha.y = y - alto / 2
-        self.bbox_3d.esquina_frontal_inferior_derecha.z = z
+        # Calculamos centros y esquinas del bounding box
+        centro_objeto = Point()
+        centro_objeto.x = x
+        centro_objeto.y = y
+        centro_objeto.z = z + profundidad / 2
+        self.bbox_3d.centro_objeto.append(centro_objeto)
 
-        self.bbox_3d.esquina_frontal_superior_derecha.x = x + ancho / 2
-        self.bbox_3d.esquina_frontal_superior_derecha.y = y + alto / 2
-        self.bbox_3d.esquina_frontal_superior_derecha.z = z
+        centro_frontal = Point()
+        centro_frontal.x = x
+        centro_frontal.y = y
+        centro_frontal.z = z
+        self.bbox_3d.centro_frontal.append(centro_frontal)
 
-        self.bbox_3d.esquina_trasera_inferior_izquierda.x = x - ancho / 2
-        self.bbox_3d.esquina_trasera_inferior_izquierda.y = y - alto / 2
-        self.bbox_3d.esquina_trasera_inferior_izquierda.z = z + profundidad
-        
-        self.bbox_3d.esquina_trasera_superior_izquierda.x = x - ancho / 2
-        self.bbox_3d.esquina_trasera_superior_izquierda.y = y + alto / 2
-        self.bbox_3d.esquina_trasera_superior_izquierda.z = z + profundidad
-        
-        self.bbox_3d.esquina_trasera_inferior_derecha.x = x + ancho / 2
-        self.bbox_3d.esquina_trasera_inferior_derecha.y = y - alto / 2
-        self.bbox_3d.esquina_trasera_inferior_derecha.z = z + profundidad
-        
-        self.bbox_3d.esquina_trasera_superior_derecha.x = x + ancho / 2
-        self.bbox_3d.esquina_trasera_superior_derecha.y = y + alto / 2
-        self.bbox_3d.esquina_trasera_superior_derecha.z = z + profundidad
+        centro_trasero = Point()
+        centro_trasero.x = x
+        centro_trasero.y = y
+        centro_trasero.z = z + profundidad
+        self.bbox_3d.centro_trasero.append(centro_trasero)
+
+        centro_izquierdo = Point()
+        centro_izquierdo.x = x - ancho / 2
+        centro_izquierdo.y = y
+        centro_izquierdo.z = z + profundidad / 2
+        self.bbox_3d.centro_izquierdo.append(centro_izquierdo)
+
+        centro_derecho = Point()
+        centro_derecho.x = x + ancho / 2
+        centro_derecho.y = y
+        centro_derecho.z = z + profundidad / 2
+        self.bbox_3d.centro_derecho.append(centro_derecho)
+
+        esquina_frontal_inferior_izquierda = Point()
+        esquina_frontal_inferior_izquierda.x = x - ancho / 2
+        esquina_frontal_inferior_izquierda.y = y - alto / 2
+        esquina_frontal_inferior_izquierda.z = z
+        self.bbox_3d.esquina_frontal_inferior_izquierda.append(esquina_frontal_inferior_izquierda)
+
+        esquina_frontal_superior_izquierda = Point()
+        esquina_frontal_superior_izquierda.x = x - ancho / 2
+        esquina_frontal_superior_izquierda.y = y + alto / 2
+        esquina_frontal_superior_izquierda.z = z
+        self.bbox_3d.esquina_frontal_superior_izquierda.append(esquina_frontal_superior_izquierda)
+
+        esquina_frontal_inferior_derecha = Point()
+        esquina_frontal_inferior_derecha.x = x + ancho / 2
+        esquina_frontal_inferior_derecha.y = y - alto / 2
+        esquina_frontal_inferior_derecha.z = z
+        self.bbox_3d.esquina_frontal_inferior_derecha.append(esquina_frontal_inferior_derecha)
+
+        esquina_frontal_superior_derecha = Point()
+        esquina_frontal_superior_derecha.x = x + ancho / 2
+        esquina_frontal_superior_derecha.y = y + alto / 2
+        esquina_frontal_superior_derecha.z = z
+        self.bbox_3d.esquina_frontal_superior_derecha.append(esquina_frontal_superior_derecha)
+
+        esquina_trasera_inferior_izquierda = Point()
+        esquina_trasera_inferior_izquierda.x = x - ancho / 2
+        esquina_trasera_inferior_izquierda.y = y - alto / 2
+        esquina_trasera_inferior_izquierda.z = z + profundidad
+        self.bbox_3d.esquina_trasera_inferior_izquierda.append(esquina_trasera_inferior_izquierda)
+
+        esquina_trasera_superior_izquierda = Point()
+        esquina_trasera_superior_izquierda.x = x - ancho / 2
+        esquina_trasera_superior_izquierda.y = y + alto / 2
+        esquina_trasera_superior_izquierda.z = z + profundidad
+        self.bbox_3d.esquina_trasera_superior_izquierda.append(esquina_trasera_superior_izquierda)
+
+        esquina_trasera_inferior_derecha = Point()
+        esquina_trasera_inferior_derecha.x = x + ancho / 2
+        esquina_trasera_inferior_derecha.y = y - alto / 2
+        esquina_trasera_inferior_derecha.z = z + profundidad
+        self.bbox_3d.esquina_trasera_inferior_derecha.append(esquina_trasera_inferior_derecha)
+
+        esquina_trasera_superior_derecha = Point()
+        esquina_trasera_superior_derecha.x = x + ancho / 2
+        esquina_trasera_superior_derecha.y = y + alto / 2
+        esquina_trasera_superior_derecha.z = z + profundidad
+        self.bbox_3d.esquina_trasera_superior_derecha.append(esquina_trasera_superior_derecha)
 
 ## Main
 def main(args=None):
