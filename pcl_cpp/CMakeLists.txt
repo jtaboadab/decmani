@@ -10,28 +10,22 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(msg_srv_creator REQUIRED)
-find_package(PCL REQUIRED)
-find_package(pcl_conversions REQUIRED)
-find_package(pcl_ros REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
-include_directories(${PCL_INCLUDE_DIRS})
-link_directories(${PCL_LIBRARY_DIRS})
-add_definitions(${PCL_DEFINITIONS})
+add_executable(aruco src/pruebas_aruco_cpp.cpp)
+ament_target_dependencies(aruco rclcpp std_msgs sensor_msgs msg_srv_creator OpenCV cv_bridge)
 
-add_executable(pcl src/pcl_cpp.cpp)
-target_link_libraries (pcl ${PCL_LIBRARIES})
-ament_target_dependencies(pcl rclcpp pcl_conversions pcl_ros std_msgs sensor_msgs msg_srv_creator OpenCV cv_bridge)
-
-add_executable(pruebas src/pruebas_cpp.cpp)
-target_link_libraries (pruebas ${PCL_LIBRARIES})
-ament_target_dependencies(pruebas rclcpp pcl_conversions pcl_ros std_msgs sensor_msgs msg_srv_creator OpenCV cv_bridge)
+add_executable(calibration src/calibration_cpp.cpp)
+ament_target_dependencies(calibration rclcpp std_msgs sensor_msgs geometry_msgs msg_srv_creator OpenCV cv_bridge tf2_ros tf2_geometry_msgs)
 
 install(TARGETS
-  pcl
-  pruebas
+  aruco
+  calibration
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

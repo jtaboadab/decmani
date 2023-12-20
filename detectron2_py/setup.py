@@ -21,9 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'detectron2 = detectron2_py.detectron2_py:main',
-            'bbox = detectron2_py.bbox_py:main',
-            'pruebasz = detectron2_py.pruebas_coordenada_z_py:main',
-            'pruebasbbox = detectron2_py.pruebas_bbox_py:main'
+            'bbox = detectron2_py.bbox_py:main'
         ],
     },
 )

@@ -1,3 +1,8 @@
+'''1-Enseñar a profesor
+   2-El punto del vaso se observa correctamente en la proteccion de la imagen a color sobre los depth points
+   3-Utilizar la matriz intrinseca de la lente depth para ver si así el punto se posiciona correctamente
+   4-Calcular las transformaciones necesaria para obtener el punto 3d con respecto del brazo'''
+
 # Librerías para crear el nodo de ROS2
 import rclpy
 from rclpy.node import Node
@@ -25,21 +30,28 @@ class Bbox(Node):
         # Rotación
         self.P=np.array([[0.9999510049819946, 0.009837210178375244, 0],[-0.009841140359640121, 0.9999340176582336, 0], [0, 0, 1]])
         # Matriz de transformación
-        self.matriz_transformacion = np.array([[0.9999510049819946, 0.009837210178375244, 0.025463199615478516],
+        '''self.matriz_transformacion = np.array([[0.9999510049819946, 0.009837210178375244, 0.025463199615478516],
                                                [-0.009841140359640121, 0.9999340176582336, 0.0020235499739646912],
-                                               [0, 0, 1]])
+                                               [0, 0, 1]])'''
         
         ## Valores intrínsecos de cámara
         self.matriz_proyeccion = np.array([[509.0920104980469, 0.0, 299.10101318359375],
                                         [0.0, 509.0920104980469, 244.7949981689453],
                                         [0.0, 0.0, 1.0]], dtype=np.float32)
         
-        self.matriz_comb = np.dot(self.matriz_proyeccion, self.matriz_transformacion)
+        self.fx = 509.0920104980469
+        self.fy = 509.0920104980469
+        self.centro_x = 299.10101318359375
+        self.centro_y = 244.7949981689453
         
-        self.matriz_comb_inversa = np.linalg.inv(self.matriz_comb)
+        self.matriz_proy_inversa = np.linalg.inv(self.matriz_proyeccion)
+        
+        #self.matriz_comb = np.dot(self.matriz_proyeccion, self.matriz_transformacion)
+        
+        #self.matriz_comb_inversa = np.linalg.inv(self.matriz_comb)
         
         # Dimensiones (ancho, alto, profundidad) del objeto
-        self.dimensiones = [0.12, 0.095, 0.08]
+        self.dimensiones = [0.07, 0.095, 0.07]
         
         # Valores usados para el preprocesamiento de la imagen
         self.umbral=200
@@ -50,12 +62,14 @@ class Bbox(Node):
         self.depth_image_ = Image()
         self.masks_ = Mask()
         self.bbox_3d = Bbox3d()
+        self.center_point_ = Point()
         self.cv_depth_image = None
         self.cv_normalized_depth_image = None
         self.count_ = 0
         
         # Publishers
         self.publisher_bbox_3d_ = self.create_publisher(Bbox3d, '/bbox/bbox_3d', 10)
+        self.publisher_center_point_ = self.create_publisher(Point, '/bbox/center_point', 10)
 
         # Subscribers
         self.subscription_masks_ = self.create_subscription(Mask, '/detectron2/masks_image', self.listener_callback_masks, 10)
@@ -82,16 +96,20 @@ class Bbox(Node):
             
                 if z != 0: # Si la coordenada Z distinta de 0 se realizan las operaciones, si es 0 el objeto no ha sido detectado correctamente
                 
-                    x, y = self.coordenadas_xy(mask) # Calculamos las coordenadas X e Y
+                    x, y = self.coordenadas_xy(mask, z) # Calculamos las coordenadas X e Y
                 
                     self.calcular_bounding_box_3d((x, y, z), self.dimensiones, self.count_) # Calculamos el bounding box 3D a partir de la coordenadas y las dimensiones del objeto
-                
+
+                    self.center_point_ = self.bbox_3d.centro_objeto[0]
+                    
                     self.publisher_bbox_3d_.publish(self.bbox_3d) # Publicamos el bounding box 3D por el topic '/bbox/bbox_3d'
+                    self.publisher_center_point_.publish(self.center_point_)
                     
                     self.count_ = self.count_ + 1
                 
                     # Mostramos por pantalla la información obtenida
                     self.get_logger().info('\nObjeto %s\nCoordenada X: %s m\nCoordenada Y: %s m\nCoordenada Z: %s m\n' % (self.count_,x, y, z))
+                    self.get_logger().info('\nCenter point:\n%s m\n' % self.center_point_)
             
                 else:
                 
@@ -214,20 +232,23 @@ class Bbox(Node):
         return cX, cY, centroide_bool
     
     ## Función que calcula las coordenadas X e Y de una máscara
-    def coordenadas_xy(self, mask):
+    def coordenadas_xy(self, mask, z):
         
         cX, cY, centroide_bool = self.calcular_centroide(mask) # Calculamos el centroide del objeto
         
         if centroide_bool: # Si se ha podido calcular el centroide realizamos las operaciones para pasarlo al mundo real
             
-            # Calculamos las coordenadas homogéneas en el sistema de coordenadas del mundo real
-            centroide_real_homogeneo = np.dot(self.matriz_comb_inversa, np.array([cX, cY, 1]))
-
-            # Conviertimos las coordenadas homogéneas a coordenadas cartesianas
-            centroide_real = centroide_real_homogeneo[:-1] / centroide_real_homogeneo[-1]
+            '''centroide_real = np.dot(self.matriz_comb_inversa, np.array([cX, cY, 1]))
             
             x = centroide_real[0]
-            y = -centroide_real[1]
+            y = centroide_real[1]'''
+            
+            #centroide_real = np.dot(self.matriz_proy_inversa, np.array([cX, cY, 1])) * z
+            centroide_real_x = (cX-self.centro_x) * z / self.fx
+            centroide_real_y = (cY-self.centro_y) * z / self.fy
+            
+            x = centroide_real_x
+            y = centroide_real_y
                         
         else: # En caso contrario se mantienen a 0
             
