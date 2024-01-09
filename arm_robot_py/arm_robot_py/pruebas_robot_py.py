@@ -18,13 +18,16 @@ def main():
     bot.arm.set_ee_pose_components(x= x, y=y, z=0.25, roll=0, pitch=1.25, moving_time=moving_time, accel_time=accel_time)
     bot.arm.set_ee_pose_components(x= x, y=y, z=0.1, roll=0, pitch=1.25, moving_time=moving_time, accel_time=accel_time)
     bot.gripper.grasp(2.0)
-    bot.arm.set_ee_pose_components(x= x, y=y, z=0.25, roll=0, pitch=1.25, moving_time=moving_time, accel_time=accel_time)
     
-    bot.arm.go_to_home_pose(moving_time=moving_time, accel_time=accel_time)
+    bot.arm.set_ee_pose_components(x= x, y=y, z=0.25, roll=0, pitch=1.25, moving_time=moving_time, accel_time=accel_time)
+    bot.arm.set_ee_pose_components(x=0.4, y=0, z=0.3, roll=0, pitch=1.25, moving_time=moving_time, accel_time=accel_time)
+    bot.arm.set_ee_pose_components(x=0.4, y=0, z=0.16, roll=0, pitch=1.25, moving_time=moving_time, accel_time=accel_time)
     bot.gripper.release(2.0)
+    
     bot.arm.go_to_sleep_pose(moving_time=moving_time, accel_time=accel_time)
     bot.shutdown()
 
 
 if __name__ == '__main__':
     main()
+    

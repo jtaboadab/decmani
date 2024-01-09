@@ -1,8 +1,3 @@
-'''1-Enseñar a profesor
-   2-El punto del vaso se observa correctamente en la proteccion de la imagen a color sobre los depth points
-   3-Utilizar la matriz intrinseca de la lente depth para ver si así el punto se posiciona correctamente
-   4-Calcular las transformaciones necesaria para obtener el punto 3d con respecto del brazo'''
-
 # Librerías para crear el nodo de ROS2
 import rclpy
 from rclpy.node import Node
@@ -29,10 +24,6 @@ class Bbox(Node):
         self.M=np.array([[1, 0, -25.463199615478516], [0, 1, -0.20235499739646912]])
         # Rotación
         self.P=np.array([[0.9999510049819946, 0.009837210178375244, 0],[-0.009841140359640121, 0.9999340176582336, 0], [0, 0, 1]])
-        # Matriz de transformación
-        '''self.matriz_transformacion = np.array([[0.9999510049819946, 0.009837210178375244, 0.025463199615478516],
-                                               [-0.009841140359640121, 0.9999340176582336, 0.0020235499739646912],
-                                               [0, 0, 1]])'''
         
         ## Valores intrínsecos de cámara
         self.matriz_proyeccion = np.array([[509.0920104980469, 0.0, 299.10101318359375],
@@ -45,10 +36,6 @@ class Bbox(Node):
         self.centro_y = 244.7949981689453
         
         self.matriz_proy_inversa = np.linalg.inv(self.matriz_proyeccion)
-        
-        #self.matriz_comb = np.dot(self.matriz_proyeccion, self.matriz_transformacion)
-        
-        #self.matriz_comb_inversa = np.linalg.inv(self.matriz_comb)
         
         # Dimensiones (ancho, alto, profundidad) del objeto
         self.dimensiones = [0.07, 0.095, 0.07]
@@ -98,7 +85,7 @@ class Bbox(Node):
                 
                     x, y = self.coordenadas_xy(mask, z) # Calculamos las coordenadas X e Y
                 
-                    self.calcular_bounding_box_3d((x, y, z), self.dimensiones, self.count_) # Calculamos el bounding box 3D a partir de la coordenadas y las dimensiones del objeto
+                    self.calcular_bounding_box_3d((x, y, z), self.dimensiones) # Calculamos el bounding box 3D a partir de la coordenadas y las dimensiones del objeto
 
                     self.center_point_ = self.bbox_3d.centro_objeto[0]
                     
@@ -129,7 +116,7 @@ class Bbox(Node):
     ##  Función que calcula la coordenada Z del objeto mediante la imagen de profundidad y la máscara     
     def coordenada_z(self, cv_normalized_depth_image, mask):
         
-        # Como la máscara se ha calculado mediante la imagen a color y la imagen de profundidad no se realiza desde el mismo ángulo,
+        # Como la máscara se ha calculado mediante la imagen a color, y la imagen de profundidad no se realiza desde el mismo ángulo,
         # debemos obtener la imagen de profundidad como si se hubiera capturado desde el mismo ángulo que la imagen a color.
         # Para ello, mediante los parámetros extrínsecos que relacionan ambas cámaras podemos relacionar la máscara con la imagen de profundidad.
         
@@ -238,12 +225,6 @@ class Bbox(Node):
         
         if centroide_bool: # Si se ha podido calcular el centroide realizamos las operaciones para pasarlo al mundo real
             
-            '''centroide_real = np.dot(self.matriz_comb_inversa, np.array([cX, cY, 1]))
-            
-            x = centroide_real[0]
-            y = centroide_real[1]'''
-            
-            #centroide_real = np.dot(self.matriz_proy_inversa, np.array([cX, cY, 1])) * z
             centroide_real_x = (cX-self.centro_x) * z / self.fx
             centroide_real_y = (cY-self.centro_y) * z / self.fy
             
@@ -258,11 +239,14 @@ class Bbox(Node):
         return x, y
     
     ## Función que calcula el bounding box 3D del objeto a partir del centroide 3D y las dimensiones del objeto
-    def calcular_bounding_box_3d(self, centroide, dimensiones, count):
+    def calcular_bounding_box_3d(self, centroide, dimensiones):
         
         ancho, alto, profundidad = dimensiones
         x, y, z = centroide
-
+        x = float(x)
+        y = float(y)
+        z = float(z) 
+        
         # Calculamos centros y esquinas del bounding box
         centro_objeto = Point()
         centro_objeto.x = x

@@ -68,10 +68,16 @@ class Detectron2(Node):
             masks_msg.mask_images = mask_images
             self.publisher_masks_image_.publish(masks_msg)
             self.publisher_depth_image_.publish(self.depth_image_)
+            
+            with open('/home/tfg/dectmani_ws/src/detectron2_py/detectron2_py/contador_objetos.txt', 'w') as archivo:
+                archivo.write('%s' % self.count_)
+                
             self.get_logger().info('%i Objetos detectados' % self.count_)           
             
         else:
             
+            with open('/home/tfg/dectmani_ws/src/detectron2_py/detectron2_py/contador_objetos.txt', 'w') as archivo:
+                archivo.write('%s' % self.count_)
             self.get_logger().info('Ningún objeto detectado')
 
     # Callback para la imagen de profundidad
