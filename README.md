@@ -55,7 +55,16 @@ Mira las [instrucciones de instalación](https://github.com/jtaboadab/decmani/bl
 
 ## Resultados
 
+¡Clicar la imagen para ir al vídeo!
+
+Detección y manipulación de varios vasos:
 [![Detección y manipulación de varios vasos](https://img.youtube.com/vi/qSP8cxH0kIA/0.jpg)](https://www.youtube.com/watch?v=qSP8cxH0kIA)
+
+Comprobación de la calibración cámara-brazo:
+[![Calibración cámara-brazo](https://img.youtube.com/vi/SP1kh1Vxjg4/0.jpg)](https://www.youtube.com/watch?v=SP1kh1Vxjg4)
+
+Vista desde el ordenador:
+[![Vista desde el ordenador](https://img.youtube.com/vi/OjQWqC-PPnk/0.jpg)](https://www.youtube.com/watch?v=OjQWqC-PPnk)
 
 ---
 
