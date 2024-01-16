@@ -73,35 +73,43 @@ Vista desde el ordenador:
 
 ## Estructura del Proyecto
 
-### Archivos Principales
-
-- `detectron2_node.py`: Archivo principal que contiene la implementación del nodo ROS2 con Detectron2.
-- `requirements.txt`: Lista de dependencias del proyecto.
-
 ### Carpetas
 
-- **src/**: Contiene el código fuente del proyecto.
-  - `__init__.py`: Archivo de inicialización para tratar la carpeta como un paquete Python.
-  - `detectron2_node.py`: Implementación del nodo de ROS2 con Detectron2.
-  - `utils/`: Carpeta que contiene módulos o scripts utilitarios.
-    - `helper_functions.py`: Funciones auxiliares para el procesamiento de imágenes u otras tareas.
-- **msg_srv_creator/**: Contiene los archivos de definición de mensajes de ROS (si aplica).
-  - `Mask.msg`: Definición del mensaje de máscara.
-- **docs/**: Documentación adicional si es necesario.
-- **tests/**: Archivos de prueba si es relevante.
+- **Images/**: Contiene las imágenes del proyecto.
+- **arm_robot_py/**: Contiene el nodo que controla el brozo robótico.
+- **calibration_cpp/**: Contiene el nodo de calibración cámara-brazo.
+- **camera_py/**: Contiene un nodo para guardar imágenes.
+- **coord_trans_py/**: Contiene el nodo para calcular las coordenadas 3D del objeto con respecto el brazo robótico.
+- **detectron_py/** Contiene el nodo de detección de objetos y el nodo del cálculo de la posición del objeto con respecto a la cámara.
+- **dynamixel-workbench/**, **interbotix_ros_core/**, **interbotix_ros_manipulators/**, **interbotix_ros_toolboxes/**, **interbotix_xs_driver/**: Son los nodos proporcionados por el fabricante para poder usar el brazo robótico.
+- **msg_srv_creator/**: Contiene los archivos de definición de mensajes de ROS.
+- **ros2_astra_camera/**: Es el nodo prporcionado por el fabricante para poder usar la cámara RGB-D.
 
-### Configuración y Scripts
 
-- **config/**: Archivos de configuración o modelos preentrenados para Detectron2.
-  - `mask_rcnn_config.yaml`: Configuración del modelo Mask R-CNN.
-- **launch/**: Archivos de lanzamiento de ROS2 si es aplicable.
-  - `detectron2_node_launch.py`: Archivo de lanzamiento para el nodo Detectron2.
-- `setup.py`: Archivo de configuración para la instalación del proyecto.
+### Scripts
+
+- **arm_robot_py/**
+  - arm_robot_py/
+    - `arm_robot_py.py`
+- **calibration_cpp/**
+  - src/
+    - `calibration_cpp.cpp`
+- **camera_py/**
+  - camera_py/
+    - `camera_py`
+- **coord_trans_py/**
+  - coord_trans_py/
+    - `coord_trans_py.py`
+- **detectron2_py/**
+  - detectron2_py/
+    - `detectron2_py.py`
+    - `bbox_py.py`
 
 ### Otros Archivos
 
 - `.gitignore`: Lista de archivos y carpetas que deben ignorarse al realizar seguimiento con Git.
-- `LICENSE`: Licencia del proyecto.
+- `INSTALL.md`: Tutorial de instalación.
+- `LICENSE.md`: Licencia del proyecto.
 - `README.md`: Documentación principal del proyecto.
 
 ---
