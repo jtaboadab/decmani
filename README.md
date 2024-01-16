@@ -12,7 +12,7 @@
 
 1. [Introducción](#introducción)
 2. [Instalación](#instalación)
-3. [Uso](#uso)
+3. [Resultados](#resultados)
 4. [Estructura del Proyecto](#estructura-del-proyecto)
 5. [Licencia](#licencia)
 6. [Contribuciones](#contribuciones)
@@ -53,7 +53,10 @@ Mira las [instrucciones de instalación](https://github.com/jtaboadab/decmani/bl
 
 ---
 
-## Uso
+## Resultados
+
+Detección y manipulación de varios vasos:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=qSP8cxH0kIA&ab_channel=JoseAngelTaboadaBerlanga" frameborder="0" allowfullscreen></iframe>
 
 ---
 
