@@ -54,9 +54,11 @@ Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la
 
 ![Astra Pro Plus](https://github.com/jtaboadab/decmani/blob/main/images/AstraProPlus.jpg)
 
+
 **Brazo Robótico Interbotix WidowX 250**
 
 ![Interbotix Widowx 250](https://github.com/jtaboadab/decmani/blob/main/images/wx250.png)
+
 
 **Marcador ArUco**
 
