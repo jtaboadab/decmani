@@ -55,8 +55,7 @@ Mira las [instrucciones de instalación](https://github.com/jtaboadab/decmani/bl
 
 ## Resultados
 
-Detección y manipulación de varios vasos:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qSP8cxH0kIA" frameborder="0" allowfullscreen></iframe>
+[![Detección y manipulación de varios vasos](https://img.youtube.com/vi/qSP8cxH0kIA/0.jpg)](https://www.youtube.com/watch?v=qSP8cxH0kIA)
 
 ---
 
