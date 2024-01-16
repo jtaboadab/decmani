@@ -11,11 +11,12 @@
 ## Contenido
 
 1. [Introducción](#introducción)
-2. [Instalación](#instalación)
-3. [Resultados](#resultados)
-4. [Estructura del Proyecto](#estructura-del-proyecto)
-5. [Licencia](#licencia)
-6. [Contribuciones](#contribuciones)
+2. [Dispositivos utilizados](#dispositivos-utilizados)
+3. [Instalación](#instalación)
+4. [Resultados](#resultados)
+5. [Estructura del Proyecto](#estructura-del-proyecto)
+6. [Licencia](#licencia)
+7. [Contribuciones](#contribuciones)
    
 ---
 
@@ -44,6 +45,21 @@ ROS2, como marco de trabajo, proporciona la estructura necesaria para el desarro
    - Escalabilidad y Modularidad: Diseñar el sistema de manera que sea escalable y modular, permitiendo futuras expansiones y adaptaciones a diferentes entornos y requisitos específicos.
 
 Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la detección y manipulación de objetos de menaje, sino también sentar las bases para soluciones robóticas más avanzadas y accesibles en el ámbito doméstico.
+
+---
+
+## Dispositivos utilizados
+
+### Cámara RGB-D
+Orbbec Atra Pro Plus
+![Astra Pro Plus](https://github.com/jtaboadab/decmani/blob/main/Images/Escena.jpg)
+
+### Brazo Robótico
+Interbotix WidowX 250
+![Interbotix Widowx 250](https://github.com/jtaboadab/decmani/blob/main/Images/Escena.jpg)
+
+### Marcador ArUco
+![Marcador ArUco](https://github.com/jtaboadab/decmani/blob/main/Images/Escena.jpg)
 
 ---
 
