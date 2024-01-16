@@ -1,6 +1,6 @@
 # DecMani - Detección y Manipulación de Objetos de menaje
 
-![Imagen o Logo del Proyecto](https://github.com/jtaboadab/decmani/blob/main/Images/Escena.jpg){width=400px}
+![Imagen o Logo del Proyecto](https://github.com/jtaboadab/decmani/blob/main/images/Escena.jpg)
 
 > El objetivo principal de la detección y manipulación de objetos de menaje es dotar a los sistemas robóticos de la capacidad de interactuar de manera inteligente con objetos domésticos, facilitando tareas como la organización, limpieza, y asistencia en entornos hogareños. Este campo encuentra aplicaciones prácticas en la automatización de tareas domésticas y en la mejora de la accesibilidad para personas con necesidades especiales.
 >
@@ -51,13 +51,13 @@ Este proyecto tiene como objetivo no solo demostrar la viabilidad técnica de la
 ## Dispositivos utilizados
 
 **Cámara RGB-D Orbbec Atra Pro Plus**
-![Astra Pro Plus](https://github.com/jtaboadab/decmani/blob/main/Images/AstraProPlus.jpg){width=400px}
+![Astra Pro Plus](https://github.com/jtaboadab/decmani/blob/main/images/AstraProPlus.jpg)
 
 **Brazo Robótico Interbotix WidowX 250**
-![Interbotix Widowx 250](https://github.com/jtaboadab/decmani/blob/main/Images/wx250.png){width=400px}
+![Interbotix Widowx 250](https://github.com/jtaboadab/decmani/blob/main/images/wx250.png)
 
 **Marcador ArUco**
-![Marcador ArUco](https://github.com/jtaboadab/decmani/blob/main/Images/ArUco.PNG){width=400px}
+![Marcador ArUco](https://github.com/jtaboadab/decmani/blob/main/images/ArUco.PNG)
 
 ---
 
