@@ -1,6 +1,6 @@
 # DecMani - Detección y Manipulación de Objetos de menaje
 
-![Imagen o Logo del Proyecto](url_de_la_imagen)
+![Imagen o Logo del Proyecto](https://github.com/jtaboadab/decmani/blob/main/Images/Escena.jpg)
 
 > El objetivo principal de la detección y manipulación de objetos de menaje es dotar a los sistemas robóticos de la capacidad de interactuar de manera inteligente con objetos domésticos, facilitando tareas como la organización, limpieza, y asistencia en entornos hogareños. Este campo encuentra aplicaciones prácticas en la automatización de tareas domésticas y en la mejora de la accesibilidad para personas con necesidades especiales.
 >
